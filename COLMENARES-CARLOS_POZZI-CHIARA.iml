@@ -10,7 +10,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://E:/Descargas/h2-2.2.224.jar!/" />
+          <root url="jar://E:/Descargas/jar parcial/h2-2.2.224.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
