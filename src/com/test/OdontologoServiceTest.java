@@ -1,6 +1,7 @@
 package com.test;
 
 import com.backend.entity.Odontologo;
+import com.backend.repository.impl.OdontologoDaoArrayList;
 import com.backend.repository.impl.OdontologoDaoH2;
 import com.backend.service.impl.OdontologoService;
 
@@ -23,6 +24,22 @@ class OdontologoServiceTest {
     @org.junit.jupiter.api.Test
     void deberiaRetornarUnaListaDeOdontologosNoVacia() {
         odontologoService = new OdontologoService(new OdontologoDaoH2());
+        assertFalse(odontologoService.listarOdontologos().isEmpty());
+    }
+
+    @org.junit.jupiter.api.Test
+    void deberiaRegistrarUnOdontologoYObtenerElIdCorrespondienteDelArrayList() {
+        odontologoService = new OdontologoService(new OdontologoDaoArrayList());
+        Odontologo odontologo = new Odontologo(45667789, "Odontologo", "Test");
+
+        Odontologo odontologoRegistrado = odontologoService.registrarOdontologo(odontologo);
+
+        assertNotNull(odontologoRegistrado.getId());
+    }
+
+    @org.junit.jupiter.api.Test
+    void deberiaRetornarUnArrayListDeOdontologosNoVacia() {
+        odontologoService = new OdontologoService(new OdontologoDaoArrayList());
         assertFalse(odontologoService.listarOdontologos().isEmpty());
     }
 }

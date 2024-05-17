@@ -66,3 +66,18 @@ Database may be already in use: "C:/Users/carlos/colmenares-pozzi.mv.db". Possib
 [2024-05-16 22:27:12] [ INFO ] [OdontologoDaoH2:37] Se ha registrado un odontologo Odontologo{id=6, matricula=123456789, nombre='Doctor', apellido='Test'}
 [2024-05-16 22:28:14] [ INFO ] [OdontologoDaoH2:93] Listado de odontologos obtenido [Odontologo{id=1, matricula=51095995, nombre='Chiara', apellido='Pozzi'}, Odontologo{id=2, matricula=62481200, nombre='Carlos', apellido='Colmenares'}, Odontologo{id=3, matricula=65418268, nombre='Juancito', apellido='Perez'}, Odontologo{id=4, matricula=54825781, nombre='Ana', apellido='Fulana'}, Odontologo{id=5, matricula=123456789, nombre='Doctor', apellido='Test'}, Odontologo{id=6, matricula=123456789, nombre='Doctor', apellido='Test'}]
 [2024-05-16 22:28:14] [ INFO ] [OdontologoDaoH2:37] Se ha registrado un odontologo Odontologo{id=7, matricula=123456789, nombre='Doctor', apellido='Test'}
+[2024-05-16 22:35:40] [ ERROR] [OdontologoDaoH2:82] Tabla "ODONTOLOGOS" no encontrada
+Table "ODONTOLOGOS" not found; SQL statement:
+SELECT * FROM ODONTOLOGOS [42102-224]
+[2024-05-16 22:35:40] [ INFO ] [OdontologoDaoH2:93] Listado de odontologos obtenido []
+[2024-05-16 22:35:40] [ ERROR] [OdontologoDaoH2:40] Tabla "ODONTOLOGOS" no encontrada
+Table "ODONTOLOGOS" not found; SQL statement:
+INSERT INTO ODONTOLOGOS(MATRICULA, NOMBRE, APELLIDO) VALUES (?, ?, ?) [42102-224]
+[2024-05-16 22:35:40] [ INFO ] [OdontologoDaoH2:45] Tuvimos un problema al registrar el odontologo
+[2024-05-16 22:35:40] [ ERROR] [OdontologoDaoH2:46] Tabla "ODONTOLOGOS" no encontrada
+Table "ODONTOLOGOS" not found; SQL statement:
+INSERT INTO ODONTOLOGOS(MATRICULA, NOMBRE, APELLIDO) VALUES (?, ?, ?) [42102-224]
+[2024-05-16 22:38:22] [ INFO ] [OdontologoDaoH2:93] Listado de odontologos obtenido [Odontologo{id=1, matricula=51095995, nombre='Chiara', apellido='Pozzi'}, Odontologo{id=2, matricula=62481200, nombre='Carlos', apellido='Colmenares'}, Odontologo{id=3, matricula=65418268, nombre='Juancito', apellido='Perez'}, Odontologo{id=4, matricula=54825781, nombre='Ana', apellido='Fulana'}]
+[2024-05-16 22:38:22] [ INFO ] [OdontologoDaoH2:37] Se ha registrado un odontologo Odontologo{id=5, matricula=123456789, nombre='Doctor', apellido='Test'}
+[2024-05-16 23:09:10] [ INFO ] [OdontologoDaoH2:93] Listado de odontologos obtenido [Odontologo{id=1, matricula=51095995, nombre='Chiara', apellido='Pozzi'}, Odontologo{id=2, matricula=62481200, nombre='Carlos', apellido='Colmenares'}, Odontologo{id=3, matricula=65418268, nombre='Juancito', apellido='Perez'}, Odontologo{id=4, matricula=54825781, nombre='Ana', apellido='Fulana'}, Odontologo{id=5, matricula=123456789, nombre='Doctor', apellido='Test'}]
+[2024-05-16 23:09:10] [ INFO ] [OdontologoDaoH2:37] Se ha registrado un odontologo Odontologo{id=6, matricula=123456789, nombre='Doctor', apellido='Test'}
