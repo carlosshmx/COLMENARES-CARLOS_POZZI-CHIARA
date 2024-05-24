@@ -1,7 +1,7 @@
-package com.backend.repository.impl;
+package com.backend.clinica.repository.impl;
 
-import com.backend.entity.Odontologo;
-import com.backend.repository.IDao;
+import com.backend.clinica.entity.Odontologo;
+import com.backend.clinica.repository.IDao;
 
 import java.util.ArrayList;
 import java.util.List;

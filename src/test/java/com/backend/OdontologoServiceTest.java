@@ -1,9 +1,9 @@
-package com.test;
+package com.backend;
 
-import com.backend.entity.Odontologo;
-import com.backend.repository.impl.OdontologoDaoArrayList;
-import com.backend.repository.impl.OdontologoDaoH2;
-import com.backend.service.impl.OdontologoService;
+import com.backend.clinica.entity.Odontologo;
+import com.backend.clinica.repository.impl.OdontologoDaoArrayList;
+import com.backend.clinica.repository.impl.OdontologoDaoH2;
+import com.backend.clinica.service.impl.OdontologoService;
 
 import static org.junit.jupiter.api.Assertions.*;
 

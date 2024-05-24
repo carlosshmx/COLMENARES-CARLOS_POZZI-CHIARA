@@ -1,6 +1,6 @@
-package com.backend.service;
+package com.backend.clinica.service;
 
-import com.backend.entity.Odontologo;
+import com.backend.clinica.entity.Odontologo;
 
 import java.util.List;
 

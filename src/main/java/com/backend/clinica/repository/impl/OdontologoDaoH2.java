@@ -1,9 +1,10 @@
-package com.backend.repository.impl;
+package com.backend.clinica.repository.impl;
 
-import com.backend.entity.Odontologo;
-import com.backend.repository.IDao;
-import com.backend.repository.dbconnection.H2Connection;
-import org.apache.log4j.Logger;
+import com.backend.clinica.entity.Odontologo;
+import com.backend.clinica.repository.IDao;
+import com.backend.clinica.repository.dbconnection.H2Connection;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class OdontologoDaoH2 implements IDao<Odontologo> {
 
-    private final Logger LOGGER = Logger.getLogger(OdontologoDaoH2.class);
+    private final Logger LOGGER = LogManager.getLogger(OdontologoDaoH2.class);
     @Override
     public Odontologo registrar(Odontologo odontologo) {
         Connection connection = null;
