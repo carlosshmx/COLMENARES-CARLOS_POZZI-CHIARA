@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package com.backend.repository.dbconnection;
+package com.backend.clinica.repository.dbconnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

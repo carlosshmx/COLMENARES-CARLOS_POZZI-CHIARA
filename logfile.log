@@ -1,26 +1,26 @@
-[2024-05-11 16:50:43] [ INFO ] [com.backend.Main:7] Ta aqui
-[2024-05-11 17:29:14] [ INFO ] [com.backend.Main:29] Animal: 1 - Firulais - Perro
-[2024-05-11 17:29:14] [ INFO ] [com.backend.Main:29] Animal: 2 - Lola - Vaca
-[2024-05-11 17:29:14] [ INFO ] [com.backend.Main:29] Animal: 3 - Homero - Perro
-[2024-05-11 17:29:14] [ INFO ] [com.backend.Main:29] Animal: 4 - Pepe - Sapo
-[2024-05-11 17:29:14] [ INFO ] [com.backend.Main:29] Animal: 5 - Tuki - Loro
-[2024-05-11 17:29:14] [ INFO ] [com.backend.Main:32] -----------------------------------------------------
-[2024-05-11 17:29:14] [ INFO ] [com.backend.Main:40] Animal: 2 - Lola - Vaca
-[2024-05-11 17:29:14] [ INFO ] [com.backend.Main:40] Animal: 3 - Homero - Perro
-[2024-05-11 17:29:14] [ INFO ] [com.backend.Main:40] Animal: 4 - Pepe - Sapo
-[2024-05-11 17:29:14] [ INFO ] [com.backend.Main:40] Animal: 5 - Tuki - Loro
-[2024-05-15 21:23:46] [ ERROR] [com.backend.Main:47] class java.lang.ClassNotFoundException: org.h2.Driver
-[2024-05-15 21:23:46] [ ERROR] [com.backend.Main:54]
-[2024-05-15 21:24:44] [ INFO ] [com.backend.Main:29] Animal: 1 - Firulais - Perro
-[2024-05-15 21:24:44] [ INFO ] [com.backend.Main:29] Animal: 2 - Lola - Vaca
-[2024-05-15 21:24:44] [ INFO ] [com.backend.Main:29] Animal: 3 - Homero - Perro
-[2024-05-15 21:24:44] [ INFO ] [com.backend.Main:29] Animal: 4 - Pepe - Sapo
-[2024-05-15 21:24:44] [ INFO ] [com.backend.Main:29] Animal: 5 - Tuki - Loro
-[2024-05-15 21:24:44] [ INFO ] [com.backend.Main:32] -----------------------------------------------------
-[2024-05-15 21:24:44] [ INFO ] [com.backend.Main:40] Animal: 2 - Lola - Vaca
-[2024-05-15 21:24:44] [ INFO ] [com.backend.Main:40] Animal: 3 - Homero - Perro
-[2024-05-15 21:24:44] [ INFO ] [com.backend.Main:40] Animal: 4 - Pepe - Sapo
-[2024-05-15 21:24:44] [ INFO ] [com.backend.Main:40] Animal: 5 - Tuki - Loro
+[2024-05-11 16:50:43] [ INFO ] [main.java.com.backend.clinica.Main:7] Ta aqui
+[2024-05-11 17:29:14] [ INFO ] [main.java.com.backend.clinica.Main:29] Animal: 1 - Firulais - Perro
+[2024-05-11 17:29:14] [ INFO ] [main.java.com.backend.clinica.Main:29] Animal: 2 - Lola - Vaca
+[2024-05-11 17:29:14] [ INFO ] [main.java.com.backend.clinica.Main:29] Animal: 3 - Homero - Perro
+[2024-05-11 17:29:14] [ INFO ] [main.java.com.backend.clinica.Main:29] Animal: 4 - Pepe - Sapo
+[2024-05-11 17:29:14] [ INFO ] [main.java.com.backend.clinica.Main:29] Animal: 5 - Tuki - Loro
+[2024-05-11 17:29:14] [ INFO ] [main.java.com.backend.clinica.Main:32] -----------------------------------------------------
+[2024-05-11 17:29:14] [ INFO ] [main.java.com.backend.clinica.Main:40] Animal: 2 - Lola - Vaca
+[2024-05-11 17:29:14] [ INFO ] [main.java.com.backend.clinica.Main:40] Animal: 3 - Homero - Perro
+[2024-05-11 17:29:14] [ INFO ] [main.java.com.backend.clinica.Main:40] Animal: 4 - Pepe - Sapo
+[2024-05-11 17:29:14] [ INFO ] [main.java.com.backend.clinica.Main:40] Animal: 5 - Tuki - Loro
+[2024-05-15 21:23:46] [ ERROR] [main.java.com.backend.clinica.Main:47] class java.lang.ClassNotFoundException: org.h2.Driver
+[2024-05-15 21:23:46] [ ERROR] [main.java.com.backend.clinica.Main:54]
+[2024-05-15 21:24:44] [ INFO ] [main.java.com.backend.clinica.Main:29] Animal: 1 - Firulais - Perro
+[2024-05-15 21:24:44] [ INFO ] [main.java.com.backend.clinica.Main:29] Animal: 2 - Lola - Vaca
+[2024-05-15 21:24:44] [ INFO ] [main.java.com.backend.clinica.Main:29] Animal: 3 - Homero - Perro
+[2024-05-15 21:24:44] [ INFO ] [main.java.com.backend.clinica.Main:29] Animal: 4 - Pepe - Sapo
+[2024-05-15 21:24:44] [ INFO ] [main.java.com.backend.clinica.Main:29] Animal: 5 - Tuki - Loro
+[2024-05-15 21:24:44] [ INFO ] [main.java.com.backend.clinica.Main:32] -----------------------------------------------------
+[2024-05-15 21:24:44] [ INFO ] [main.java.com.backend.clinica.Main:40] Animal: 2 - Lola - Vaca
+[2024-05-15 21:24:44] [ INFO ] [main.java.com.backend.clinica.Main:40] Animal: 3 - Homero - Perro
+[2024-05-15 21:24:44] [ INFO ] [main.java.com.backend.clinica.Main:40] Animal: 4 - Pepe - Sapo
+[2024-05-15 21:24:44] [ INFO ] [main.java.com.backend.clinica.Main:40] Animal: 5 - Tuki - Loro
 [2024-05-15 21:36:00] [ ERROR] [Main:49] class org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos puede que ya esté siendo utilizada: "C:/Users/carlos/clase8c1b2.mv.db". Soluciones Posibles: cierre todas las otras conexiones; use el modo server
 Database may be already in use: "C:/Users/carlos/clase8c1b2.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
 [2024-05-15 21:36:00] [ ERROR] [Main:56] 

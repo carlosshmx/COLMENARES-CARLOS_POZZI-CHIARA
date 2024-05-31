@@ -1,4 +1,4 @@
-package com.backend.entity;
+package com.backend.clinica.entity;
 
 public class Odontologo {
     private Long id;
