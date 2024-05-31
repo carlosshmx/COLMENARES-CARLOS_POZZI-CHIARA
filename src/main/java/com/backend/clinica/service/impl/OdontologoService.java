@@ -1,6 +1,7 @@
 package com.backend.clinica.service.impl;
 
 import com.backend.clinica.entity.Odontologo;
+import com.backend.clinica.entity.Turno;
 import com.backend.clinica.repository.IDao;
 import com.backend.clinica.service.IOdontologoService;
 
@@ -16,6 +17,10 @@ public class OdontologoService implements IOdontologoService {
     @Override
     public Odontologo registrarOdontologo(Odontologo odontologo) {
         return odontologoIDao.registrar(odontologo);
+    }
+    @Override
+    public Odontologo buscarPorId(Long Id){
+        return odontologoIDao.buscarPorId(Id);
     }
 
     @Override

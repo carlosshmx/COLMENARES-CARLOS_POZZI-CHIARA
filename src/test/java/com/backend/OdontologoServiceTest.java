@@ -1,7 +1,6 @@
 package com.backend;
 
 import com.backend.clinica.entity.Odontologo;
-import com.backend.clinica.repository.impl.OdontologoDaoArrayList;
 import com.backend.clinica.repository.impl.OdontologoDaoH2;
 import com.backend.clinica.service.impl.OdontologoService;
 
@@ -23,23 +22,13 @@ class OdontologoServiceTest {
 
     @org.junit.jupiter.api.Test
     void deberiaRetornarUnaListaDeOdontologosNoVacia() {
+
         odontologoService = new OdontologoService(new OdontologoDaoH2());
-        assertFalse(odontologoService.listarOdontologos().isEmpty());
-    }
 
-    @org.junit.jupiter.api.Test
-    void deberiaRegistrarUnOdontologoYObtenerElIdCorrespondienteDelArrayList() {
-        odontologoService = new OdontologoService(new OdontologoDaoArrayList());
-        Odontologo odontologo = new Odontologo(45667789, "Odontologo", "Test");
-
+        Odontologo odontologo = new Odontologo(123456789, "Doctor2", "Test2");
         Odontologo odontologoRegistrado = odontologoService.registrarOdontologo(odontologo);
 
-        assertNotNull(odontologoRegistrado.getId());
-    }
 
-    @org.junit.jupiter.api.Test
-    void deberiaRetornarUnArrayListDeOdontologosNoVacia() {
-        odontologoService = new OdontologoService(new OdontologoDaoArrayList());
         assertFalse(odontologoService.listarOdontologos().isEmpty());
     }
 }

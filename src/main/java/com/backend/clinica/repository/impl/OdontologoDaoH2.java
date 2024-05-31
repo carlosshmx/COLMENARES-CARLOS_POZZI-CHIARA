@@ -2,7 +2,7 @@ package com.backend.clinica.repository.impl;
 
 import com.backend.clinica.entity.Odontologo;
 import com.backend.clinica.repository.IDao;
-import com.backend.clinica.repository.dbconnection.H2Connection;
+import com.backend.clinica.dbconnection.H2Connection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -62,6 +62,39 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
         return odontologoRegistrado;
     }
 
+    @Override
+    public Odontologo buscarPorId(Long id) {
+        Odontologo odontologoBuscado = null;
+        Connection connection = null;
+
+        try{
+            connection = H2Connection.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ODONTOLOGOS WHERE ID = ?");
+            preparedStatement.setLong(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                odontologoBuscado = new Odontologo(resultSet.getLong(1), resultSet.getInt(2), resultSet.getString(3),  resultSet.getString(4));
+            }
+
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception ex) {
+                LOGGER.error("Ha ocurrido un error al intentar cerrar la bdd. " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
+
+        if(odontologoBuscado == null) LOGGER.error("No se ha encontrado el odontologo con id: " + id);
+        else LOGGER.info("Se ha encontrado el odontologo: " + odontologoBuscado);
+
+        return odontologoBuscado;
+    }
 
 
     @Override

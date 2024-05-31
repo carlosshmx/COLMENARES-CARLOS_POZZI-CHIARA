@@ -6,14 +6,14 @@ public class Odontologo {
     private String nombre;
     private String apellido;
 
-    public Odontologo(int matricula, String nombre, String apellido) {
+    public Odontologo(Long id, int matricula, String nombre, String apellido) {
+        this.id = id;
         this.matricula = matricula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public Odontologo(Long id, int matricula, String nombre, String apellido) {
-        this.id = id;
+    public Odontologo(int matricula, String nombre, String apellido) {
         this.matricula = matricula;
         this.nombre = nombre;
         this.apellido = apellido;
