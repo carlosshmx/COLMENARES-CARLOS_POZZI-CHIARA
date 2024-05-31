@@ -1,7 +1,10 @@
 package com.backend;
 
+import com.backend.clinica.entity.Domicilio;
 import com.backend.clinica.entity.Paciente;
+import com.backend.clinica.repository.impl.DomicilioDaoH2;
 import com.backend.clinica.repository.impl.PacienteDaoH2;
+import com.backend.clinica.service.impl.DomicilioService;
 import com.backend.clinica.service.impl.PacienteService;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +15,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class PacienteServiceTest {
 
     private PacienteService pacienteService;
+    private DomicilioService domicilioService;
 
     @Test
     void deberiaRegistrarseUnPacienteYObtenerElIdCorrespondiente(){
 
         pacienteService = new PacienteService(new PacienteDaoH2());
-        Paciente paciente = new Paciente("Nombre", "Apellido", 123456, LocalDate.of(2023, 05, 02));
+        domicilioService = new DomicilioService(new DomicilioDaoH2());
+        Domicilio domicilio = new Domicilio("18 de julio", 2345, "Montevideo", "Montevideo");
+        Domicilio domicilioRegistrado = domicilioService.registrarDomicilio(domicilio);
+        Paciente paciente = new Paciente("Nombre", "Apellido", 123456, LocalDate.of(2023, 05, 02), domicilioRegistrado);
 
         Paciente pacienteRegistrado = pacienteService.registrarPaciente(paciente);
 
@@ -28,7 +35,9 @@ class PacienteServiceTest {
     @Test
     void deberiaRetornarseUnaListaNoVaciaDePacientesEnH2(){
         pacienteService = new PacienteService(new PacienteDaoH2());
-        Paciente paciente = new Paciente("Nombre", "Apellido", 123456, LocalDate.of(2023, 05, 02));
+        domicilioService = new DomicilioService(new DomicilioDaoH2());
+        Domicilio domicilio = new Domicilio("18 de julio", 2345, "Montevideo", "Montevideo");
+        Paciente paciente = new Paciente("Nombre", "Apellido", 123456, LocalDate.of(2023, 05, 02), domicilio);
 
         Paciente pacienteRegistrado = pacienteService.registrarPaciente(paciente);
         assertFalse(pacienteService.listarPacientes().isEmpty());
