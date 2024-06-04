@@ -22,13 +22,14 @@ class PacienteServiceTest {
 
         pacienteService = new PacienteService(new PacienteDaoH2());
         domicilioService = new DomicilioService(new DomicilioDaoH2());
+
         Domicilio domicilio = new Domicilio("18 de julio", 2345, "Montevideo", "Montevideo");
-        Domicilio domicilioRegistrado = domicilioService.registrarDomicilio(domicilio);
-        Paciente paciente = new Paciente("Nombre", "Apellido", 123456, LocalDate.of(2023, 05, 02), domicilioRegistrado);
+        Paciente paciente = new Paciente("Nombre", "Apellido", 123456, LocalDate.of(2023, 05, 02), domicilio);
 
         Paciente pacienteRegistrado = pacienteService.registrarPaciente(paciente);
 
         assertNotNull(pacienteRegistrado.getId());
+        assertNotNull(pacienteRegistrado.getDomicilio());
     }
 
 

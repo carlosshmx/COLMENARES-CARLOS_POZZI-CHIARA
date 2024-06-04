@@ -50,6 +50,12 @@ public class Turno {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + id + " - Paciente: " + paciente + " - Odontologo: " + odontologo + " - Fecha: " + fecha;
+    }
+
 }
 
 

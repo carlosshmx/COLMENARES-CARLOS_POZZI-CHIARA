@@ -5,6 +5,8 @@ import com.backend.clinica.entity.Domicilio;
 import com.backend.clinica.repository.impl.DomicilioDaoH2;
 import com.backend.clinica.entity.Paciente;
 import com.backend.clinica.repository.IDao;
+import com.backend.clinica.service.impl.DomicilioService;
+import com.backend.clinica.service.impl.OdontologoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +18,8 @@ public class PacienteDaoH2 implements IDao<Paciente> {
     private final Logger LOGGER = LogManager.getLogger(PacienteDaoH2.class);
 
     private DomicilioDaoH2 domicilioDaoH2;
+    private DomicilioService domicilioService;
+
     @Override
     public Paciente registrar(Paciente paciente) {
         Connection connection = null;
@@ -90,7 +94,10 @@ public class PacienteDaoH2 implements IDao<Paciente> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                pacienteBuscado = new Paciente(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3),  resultSet.getInt(4),  resultSet.getDate(5).toLocalDate(), (Domicilio) resultSet.getObject(6));
+                Long domicilioId= resultSet.getLong("domicilio_id");
+                domicilioService = new DomicilioService(new DomicilioDaoH2());
+                Domicilio domicilio = domicilioService.buscarPorId(domicilioId);
+                pacienteBuscado = new Paciente(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3),  resultSet.getInt(4),  resultSet.getDate(5).toLocalDate(), domicilio);
             }
 
         } catch (Exception e) {

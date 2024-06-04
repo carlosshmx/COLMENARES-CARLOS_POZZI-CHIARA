@@ -54,16 +54,16 @@ class TurnoServiceTest {
 
         PacienteService pacienteService = new PacienteService(new PacienteDaoH2());
         domicilioService = new DomicilioService(new DomicilioDaoH2());
-        Domicilio domicilio = new Domicilio("18 de julio", 2345, "Montevideo", "Montevideo");
-        Paciente pacienteRegistrado = new Paciente("Nombre", "Apellido", 123456, LocalDate.of(2023, 05, 02), domicilio);
+        Domicilio domicilio = new Domicilio("188 de julio", 2345, "Montevideo", "Montevideo");
+        Paciente pacienteRegistrado = new Paciente("Nombre3", "Apellido", 123456, LocalDate.of(2023, 05, 02), domicilio);
 
         OdontologoService odontologoService = new OdontologoService(new OdontologoDaoH2());
-        Odontologo odontologoRegistrado = new Odontologo(123456789, "Doctor", "Test");
+        Odontologo odontologoRegistrado = new Odontologo(123456789, "Doctor3", "Test");
 
         turnoService = new TurnoService(new TurnoDaoH2());
         Turno turno = new Turno(pacienteRegistrado,odontologoRegistrado, LocalDate.of(2023, 05, 02));
 
-        Turno turnoRegistrado = turnoService.registrarTurno(turno);
+        Turno turnoRegistrado= turnoService.registrarTurno(turno);
         assertFalse(turnoService.listarTurnos().isEmpty());
     }
 
