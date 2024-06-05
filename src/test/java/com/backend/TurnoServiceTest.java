@@ -15,6 +15,8 @@ import com.backend.clinica.service.impl.TurnoService;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,7 +31,7 @@ class TurnoServiceTest {
         PacienteService pacienteService = new PacienteService(new PacienteDaoH2());
         domicilioService = new DomicilioService(new DomicilioDaoH2());
         Domicilio domicilio = new Domicilio("18 de julio", 2345, "Montevideo", "Montevideo");
-        Paciente paciente = new Paciente("Nombre", "Apellido", 123456, LocalDate.of(2023, 05, 02), domicilio);
+        Paciente paciente = new Paciente("Nombre", "Apellido", 123456, LocalDate.of(2023, 5, 2), domicilio);
 
         Paciente pacienteRegistrado = pacienteService.registrarPaciente(paciente);
 
@@ -39,7 +41,7 @@ class TurnoServiceTest {
         Odontologo odontologoRegistrado = odontologoService.registrarOdontologo(odontologo);
 
         turnoService = new TurnoService(new TurnoDaoH2());
-        Turno turno = new Turno(pacienteRegistrado,odontologoRegistrado, LocalDate.of(2023, 05, 02));
+        Turno turno = new Turno(pacienteRegistrado,odontologoRegistrado, LocalDateTime.of(2023, Month.JULY, 2,12,12,12));
 
         Turno turnoRegistrado = turnoService.registrarTurno(turno);
 
@@ -55,13 +57,13 @@ class TurnoServiceTest {
         PacienteService pacienteService = new PacienteService(new PacienteDaoH2());
         domicilioService = new DomicilioService(new DomicilioDaoH2());
         Domicilio domicilio = new Domicilio("188 de julio", 2345, "Montevideo", "Montevideo");
-        Paciente pacienteRegistrado = new Paciente("Nombre3", "Apellido", 123456, LocalDate.of(2023, 05, 02), domicilio);
+        Paciente pacienteRegistrado = new Paciente("Nombre3", "Apellido", 123456, LocalDate.of(2023, 5, 2), domicilio);
 
         OdontologoService odontologoService = new OdontologoService(new OdontologoDaoH2());
         Odontologo odontologoRegistrado = new Odontologo(123456789, "Doctor3", "Test");
 
         turnoService = new TurnoService(new TurnoDaoH2());
-        Turno turno = new Turno(pacienteRegistrado,odontologoRegistrado, LocalDate.of(2023, 05, 02));
+        Turno turno = new Turno(pacienteRegistrado,odontologoRegistrado, LocalDateTime.of(2023, Month.JULY, 2,12,12,12));
 
         Turno turnoRegistrado= turnoService.registrarTurno(turno);
         assertFalse(turnoService.listarTurnos().isEmpty());

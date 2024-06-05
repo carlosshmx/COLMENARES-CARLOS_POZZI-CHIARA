@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.backend.TurnoServiceTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.144 s - in com.backend.TurnoServiceTest
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.136 s <<< FAILURE! - in com.backend.TurnoServiceTest
+com.backend.TurnoServiceTest.deberiaRetornarseUnaListaNoVaciaDeTurnosEnH2  Time elapsed: 0.457 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at com.backend.TurnoServiceTest.deberiaRetornarseUnaListaNoVaciaDeTurnosEnH2(TurnoServiceTest.java:69)
+

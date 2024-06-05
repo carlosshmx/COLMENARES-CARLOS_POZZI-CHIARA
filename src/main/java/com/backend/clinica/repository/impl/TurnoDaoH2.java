@@ -33,13 +33,13 @@ public class TurnoDaoH2 implements IDao<Turno> {
             pacienteDaoH2 = new PacienteDaoH2();
             Paciente pacienteRegistrado = pacienteDaoH2.registrar(turno.getPaciente());
 
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO TURNOS (PACIENTE_ID, ODONTOLOGO_ID, FECHA) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO TURNOS (PACIENTE_ID, ODONTOLOGO_ID, FECHAYHORA) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1, pacienteRegistrado.getId());
             preparedStatement.setLong(2, odontologoRegistrado.getId());
-            preparedStatement.setDate(3, Date.valueOf(turno.getFecha()));
+            preparedStatement.setTimestamp(3, Timestamp.valueOf(turno.getFechaYHora()));
             preparedStatement.execute();
 
-            turnoRegistrado = new Turno(pacienteRegistrado, odontologoRegistrado, turno.getFecha());
+            turnoRegistrado = new Turno(pacienteRegistrado, odontologoRegistrado, turno.getFechaYHora());
 
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             while(resultSet.next()) {
@@ -123,7 +123,7 @@ public class TurnoDaoH2 implements IDao<Turno> {
         Paciente paciente = new PacienteDaoH2().buscarPorId(resultSet.getLong("paciente_id"));
         Odontologo odontologo = new OdontologoDaoH2().buscarPorId(resultSet.getLong("odontologo_id"));
 
-        return new Turno(resultSet.getLong("id"), paciente, odontologo, resultSet.getDate("fecha").toLocalDate());
+        return new Turno(resultSet.getLong("id"), paciente, odontologo, resultSet.getDate("fechayhora").toLocalDate().atStartOfDay());
     }
 
 
