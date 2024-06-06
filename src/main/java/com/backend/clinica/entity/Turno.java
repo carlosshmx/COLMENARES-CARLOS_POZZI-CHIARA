@@ -1,22 +1,24 @@
 package com.backend.clinica.entity;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Turno {
     private Long id;
     private Paciente paciente;
     private Odontologo odontologo;
-    private LocalDate fecha;
+    private LocalDateTime fechaYHora;
 
-    public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDate fecha) {
+    public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDateTime fechaYHora) {
         this.id = id;
         this.paciente = paciente;
         this.odontologo = odontologo;
-        this.fecha = fecha;
+        this.fechaYHora = fechaYHora;
     }
 
-    public Turno(Paciente paciente, Odontologo odontologo, LocalDate fecha) {
+    public Turno(Paciente paciente, Odontologo odontologo, LocalDateTime fechaYHora) {
         this.paciente = paciente;
         this.odontologo = odontologo;
-        this.fecha = fecha;
+        this.fechaYHora = fechaYHora;
     }
 
     public Long getId() {
@@ -43,17 +45,17 @@ public class Turno {
         this.odontologo = odontologo;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public LocalDateTime getFechaYHora() {
+        return fechaYHora;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setFechaYHora(LocalDateTime fechayHora) {
+        this.fechaYHora = fechayHora;
     }
 
     @Override
     public String toString() {
-        return "Id: " + id + " - Paciente: " + paciente + " - Odontologo: " + odontologo + " - Fecha: " + fecha;
+        return "Id: " + id + " - Paciente: " + paciente + " - Odontologo: " + odontologo + " - Fecha: " + fechaYHora;
     }
 
 }
