@@ -5,6 +5,7 @@ import com.backend.clinica.entity.Odontologo;
 import com.backend.clinica.entity.Paciente;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -17,13 +18,15 @@ public class TurnoEntradaDto {
     private Odontologo odontologo;
     @NotNull(message = "Debe especificarse la fecha Y hora de turno")
     private LocalDateTime fechaYHora;
-
+    @Valid
+    private OdontologoEntradaDto odontologoEntradaDto;
+    private PacienteEntradaDto pacienteEntradaDto;
     public TurnoEntradaDto() {
     }
 
-    public TurnoEntradaDto(Paciente paciente, Odontologo odontologo, LocalDateTime fechaYHora) {
-        this.paciente = paciente;
-        this.odontologo = odontologo;
+    public TurnoEntradaDto(PacienteEntradaDto pacienteEntradaDto, OdontologoEntradaDto odontologoEntradaDto, LocalDateTime fechaYHora) {
+        this.pacienteEntradaDto = pacienteEntradaDto;
+        this.odontologoEntradaDto = odontologoEntradaDto;
         this.fechaYHora = fechaYHora;
     }
 

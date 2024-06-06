@@ -1,9 +1,15 @@
 package com.backend;
 
+import com.backend.clinica.dto.entrada.DomicilioEntradaDto;
+import com.backend.clinica.dto.entrada.OdontologoEntradaDto;
+import com.backend.clinica.dto.entrada.PacienteEntradaDto;
+import com.backend.clinica.dto.entrada.TurnoEntradaDto;
+import com.backend.clinica.dto.salida.OdontologoSalidaDto;
+import com.backend.clinica.dto.salida.PacienteSalidaDto;
+import com.backend.clinica.dto.salida.TurnoSalidaDto;
 import com.backend.clinica.entity.Domicilio;
 import com.backend.clinica.entity.Odontologo;
 import com.backend.clinica.entity.Paciente;
-import com.backend.clinica.entity.Turno;
 import com.backend.clinica.repository.impl.DomicilioDaoH2;
 import com.backend.clinica.repository.impl.OdontologoDaoH2;
 import com.backend.clinica.repository.impl.PacienteDaoH2;
@@ -13,6 +19,7 @@ import com.backend.clinica.service.impl.OdontologoService;
 import com.backend.clinica.service.impl.PacienteService;
 import com.backend.clinica.service.impl.TurnoService;
 import org.junit.jupiter.api.Test;
+import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,26 +31,27 @@ class TurnoServiceTest {
 
     private TurnoService turnoService;
     private DomicilioService domicilioService;
-
+    private PacienteService pacienteService;
+    private OdontologoService odontologoService;
     @Test
     void deberiaRegistrarseUnTurnoYObtenerElIdCorrespondienteParaPacienteyOdontologoEnH2(){
 
-        PacienteService pacienteService = new PacienteService(new PacienteDaoH2());
+        pacienteService = new PacienteService(new PacienteDaoH2(), new ModelMapper());
         domicilioService = new DomicilioService(new DomicilioDaoH2());
-        Domicilio domicilio = new Domicilio("18 de julio", 2345, "Montevideo", "Montevideo");
-        Paciente paciente = new Paciente("Nombre", "Apellido", 123456, LocalDate.of(2023, 5, 2), domicilio);
+        DomicilioEntradaDto domicilio = new DomicilioEntradaDto("18 de julio", 2345, "Montevideo", "Montevideo");
+        PacienteEntradaDto pacienteEntradaDto = new PacienteEntradaDto("Nombre", "Apellido", 123456, LocalDate.of(2023, 5, 2), domicilio);
 
-        Paciente pacienteRegistrado = pacienteService.registrarPaciente(paciente);
+        PacienteSalidaDto pacienteRegistrado = pacienteService.registrarPaciente(pacienteEntradaDto);
 
-        OdontologoService odontologoService = new OdontologoService(new OdontologoDaoH2());
-        Odontologo odontologo = new Odontologo(123456789, "Doctor", "Test");
+        odontologoService = new OdontologoService(new OdontologoDaoH2(), new ModelMapper());
+        OdontologoEntradaDto odontologoEntradaDto = new OdontologoEntradaDto(123456789, "Doctor", "Test");
 
-        Odontologo odontologoRegistrado = odontologoService.registrarOdontologo(odontologo);
+        OdontologoSalidaDto odontologoRegistrado = odontologoService.registrarOdontologo(odontologoEntradaDto);
 
-        turnoService = new TurnoService(new TurnoDaoH2());
-        Turno turno = new Turno(pacienteRegistrado,odontologoRegistrado, LocalDateTime.of(2023, Month.JULY, 2,12,12,12));
+        turnoService = new TurnoService(new TurnoDaoH2(), new ModelMapper());
+        TurnoEntradaDto turno = new TurnoEntradaDto(pacienteEntradaDto,odontologoEntradaDto, LocalDateTime.of(2023, Month.JULY, 2,12,12,12));
 
-        Turno turnoRegistrado = turnoService.registrarTurno(turno);
+        TurnoSalidaDto turnoRegistrado = turnoService.registrarTurno(turno);
 
         assertNotNull(turnoRegistrado.getId());
         assertNotNull(pacienteRegistrado.getId());
@@ -54,18 +62,23 @@ class TurnoServiceTest {
     @Test
     void deberiaRetornarseUnaListaNoVaciaDeTurnosEnH2(){
 
-        PacienteService pacienteService = new PacienteService(new PacienteDaoH2());
+        pacienteService = new PacienteService(new PacienteDaoH2(), new ModelMapper());
         domicilioService = new DomicilioService(new DomicilioDaoH2());
-        Domicilio domicilio = new Domicilio("188 de julio", 2345, "Montevideo", "Montevideo");
-        Paciente pacienteRegistrado = new Paciente("Nombre3", "Apellido", 123456, LocalDate.of(2023, 5, 2), domicilio);
+        DomicilioEntradaDto domicilio = new DomicilioEntradaDto("18 de julio", 2345, "Montevideo", "Montevideo");
+        PacienteEntradaDto pacienteEntradaDto = new PacienteEntradaDto("Nombre", "Apellido", 123456, LocalDate.of(2023, 5, 2), domicilio);
 
-        OdontologoService odontologoService = new OdontologoService(new OdontologoDaoH2());
-        Odontologo odontologoRegistrado = new Odontologo(123456789, "Doctor3", "Test");
+        PacienteSalidaDto pacienteRegistrado = pacienteService.registrarPaciente(pacienteEntradaDto);
 
-        turnoService = new TurnoService(new TurnoDaoH2());
-        Turno turno = new Turno(pacienteRegistrado,odontologoRegistrado, LocalDateTime.of(2023, Month.JULY, 2,12,12,12));
+        odontologoService = new OdontologoService(new OdontologoDaoH2(), new ModelMapper());
+        OdontologoEntradaDto odontologoEntradaDto = new OdontologoEntradaDto(123456789, "Doctor", "Test");
 
-        Turno turnoRegistrado= turnoService.registrarTurno(turno);
+        OdontologoSalidaDto odontologoRegistrado = odontologoService.registrarOdontologo(odontologoEntradaDto);
+
+        turnoService = new TurnoService(new TurnoDaoH2(), new ModelMapper());
+        TurnoEntradaDto turno = new TurnoEntradaDto(pacienteEntradaDto,odontologoEntradaDto, LocalDateTime.of(2023, Month.JULY, 2,12,12,12));
+
+        TurnoSalidaDto turnoRegistrado = turnoService.registrarTurno(turno);
+
         assertFalse(turnoService.listarTurnos().isEmpty());
     }
 

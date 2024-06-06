@@ -1,16 +1,18 @@
 package com.backend.clinica.repository.impl;
 
-        import com.backend.clinica.dbconnection.H2Connection;
+import com.backend.clinica.dbconnection.H2Connection;
         import com.backend.clinica.entity.Odontologo;
         import com.backend.clinica.entity.Paciente;
         import com.backend.clinica.entity.Turno;
         import com.backend.clinica.repository.IDao;
         import org.apache.logging.log4j.LogManager;
         import org.apache.logging.log4j.Logger;
+        import org.springframework.stereotype.Component;
+
         import java.sql.*;
         import java.util.ArrayList;
         import java.util.List;
-
+@Component
 public class TurnoDaoH2 implements IDao<Turno> {
     private final Logger LOGGER = LogManager.getLogger(TurnoDaoH2.class);
 

@@ -2,6 +2,10 @@ package com.backend.clinica.entity;
 import java.time.LocalDate;
 public class Paciente {
     private Long id;
+
+    public Paciente() {
+    }
+
     private String nombre;
     private String apellido;
     private int dni;
