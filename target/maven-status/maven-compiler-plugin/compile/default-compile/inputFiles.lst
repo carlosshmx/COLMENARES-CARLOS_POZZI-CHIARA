@@ -9,12 +9,15 @@ D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\service\impl
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\repository\impl\TurnoDaoH2.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\dto\entrada\PacienteEntradaDto.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\entity\Turno.java
+D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\controller\TurnoController.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\dto\salida\PacienteSalidaDto.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\Application.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\dto\entrada\TurnoEntradaDto.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\service\impl\PacienteService.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\entity\Paciente.java
+D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\controller\OdontologoController.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\dbconnection\H2Connection.java
+D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\controller\PacienteController.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\entity\Domicilio.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\repository\impl\OdontologoDaoH2.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\service\IPacienteService.java
@@ -24,4 +27,6 @@ D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\service\impl
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\repository\impl\DomicilioDaoH2.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\dto\entrada\OdontologoEntradaDto.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\dto\salida\OdontologoSalidaDto.java
+D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\config\AppConfig.java
 D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\dto\entrada\DomicilioEntradaDto.java
+D:\CTD\Backend\ProyectoIntegrador\src\main\java\com\backend\clinica\repository\PacienteRepository.java

@@ -1,3 +1,4 @@
+com\backend\clinica\controller\PacienteController.class
 com\backend\clinica\dto\salida\PacienteSalidaDto.class
 com\backend\clinica\service\IOdontologoService.class
 com\backend\clinica\repository\impl\OdontologoDaoH2.class
@@ -17,10 +18,14 @@ com\backend\clinica\dto\salida\OdontologoSalidaDto.class
 com\backend\clinica\service\impl\OdontologoService.class
 com\backend\clinica\repository\impl\DomicilioDaoH2.class
 com\backend\clinica\dto\entrada\PacienteEntradaDto.class
+com\backend\clinica\repository\PacienteRepository.class
+com\backend\clinica\controller\TurnoController.class
+com\backend\clinica\config\AppConfig.class
 com\backend\clinica\repository\impl\TurnoDaoH2.class
 com\backend\clinica\service\impl\DomicilioService.class
 com\backend\clinica\service\ITurnoService.class
 com\backend\clinica\dto\entrada\TurnoEntradaDto.class
+com\backend\clinica\controller\OdontologoController.class
 com\backend\clinica\dto\salida\TurnoSalidaDto.class
 com\backend\clinica\Application.class
 com\backend\clinica\service\IDomicilioService.class

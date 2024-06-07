@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+
 @Service
 public class TurnoService implements ITurnoService {
     private final Logger LOGGER = LoggerFactory.getLogger(PacienteService.class);

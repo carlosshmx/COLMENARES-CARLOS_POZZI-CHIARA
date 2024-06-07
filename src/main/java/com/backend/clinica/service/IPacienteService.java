@@ -11,6 +11,10 @@ public interface IPacienteService {
 
     PacienteSalidaDto registrarPaciente(PacienteEntradaDto pacienteEntradaDto);
 
-    Paciente buscarPorId(Long id);
+    PacienteSalidaDto buscarPorId(Long id);
     List<PacienteSalidaDto> listarPacientes();
+
+    void eliminarPaciente(Long id);
+    PacienteSalidaDto actualizarPaciente(PacienteEntradaDto pacienteEntradaDto, Long id);
+
 }
