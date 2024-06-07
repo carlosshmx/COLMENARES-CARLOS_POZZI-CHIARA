@@ -1,8 +1,11 @@
 package com.backend;
 
+import com.backend.clinica.dto.entrada.OdontologoEntradaDto;
+import com.backend.clinica.dto.salida.OdontologoSalidaDto;
 import com.backend.clinica.entity.Odontologo;
 import com.backend.clinica.repository.impl.OdontologoDaoH2;
 import com.backend.clinica.service.impl.OdontologoService;
+import org.modelmapper.ModelMapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,10 +15,10 @@ class OdontologoServiceTest {
 
     @org.junit.jupiter.api.Test
     void deberiaRegistrarUnOdontologoYObtenerElIdCorrespondiente() {
-        odontologoService = new OdontologoService(new OdontologoDaoH2());
-        Odontologo odontologo = new Odontologo(123456789, "Doctor", "Test");
+        odontologoService = new OdontologoService(new OdontologoDaoH2(), new ModelMapper());
+        OdontologoEntradaDto odontologoEntradaDto = new OdontologoEntradaDto(123456789, "Doctor", "Test");
 
-        Odontologo odontologoRegistrado = odontologoService.registrarOdontologo(odontologo);
+        OdontologoSalidaDto odontologoRegistrado = odontologoService.registrarOdontologo(odontologoEntradaDto);
 
         assertNotNull(odontologoRegistrado.getId());
     }
@@ -23,11 +26,11 @@ class OdontologoServiceTest {
     @org.junit.jupiter.api.Test
     void deberiaRetornarUnaListaDeOdontologosNoVacia() {
 
-        odontologoService = new OdontologoService(new OdontologoDaoH2());
+        odontologoService = new OdontologoService(new OdontologoDaoH2(), new ModelMapper());
 
-        Odontologo odontologo = new Odontologo(123456789, "Doctor2", "Test2");
-        Odontologo odontologoRegistrado = odontologoService.registrarOdontologo(odontologo);
+        OdontologoEntradaDto odontologoEntradaDto = new OdontologoEntradaDto(123456789, "Doctor", "Test");
 
+        OdontologoSalidaDto odontologoRegistrado = odontologoService.registrarOdontologo(odontologoEntradaDto);
 
         assertFalse(odontologoService.listarOdontologos().isEmpty());
     }

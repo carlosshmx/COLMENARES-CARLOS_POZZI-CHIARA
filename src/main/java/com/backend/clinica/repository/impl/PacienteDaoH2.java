@@ -9,11 +9,12 @@ import com.backend.clinica.service.impl.DomicilioService;
 import com.backend.clinica.service.impl.OdontologoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class PacienteDaoH2 implements IDao<Paciente> {
     private final Logger LOGGER = LogManager.getLogger(PacienteDaoH2.class);
 

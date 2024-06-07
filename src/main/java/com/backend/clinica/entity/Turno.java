@@ -1,7 +1,9 @@
 package com.backend.clinica.entity;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+@Component
 public class Turno {
     private Long id;
     private Paciente paciente;
@@ -20,7 +22,8 @@ public class Turno {
         this.odontologo = odontologo;
         this.fechaYHora = fechaYHora;
     }
-
+    public Turno() {
+    }
     public Long getId() {
         return id;
     }

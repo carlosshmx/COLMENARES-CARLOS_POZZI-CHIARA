@@ -5,11 +5,12 @@ import com.backend.clinica.repository.IDao;
 import com.backend.clinica.dbconnection.H2Connection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class OdontologoDaoH2 implements IDao<Odontologo> {
 
     private final Logger LOGGER = LogManager.getLogger(OdontologoDaoH2.class);

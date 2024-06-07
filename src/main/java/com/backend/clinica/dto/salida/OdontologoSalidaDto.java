@@ -12,7 +12,8 @@ public class OdontologoSalidaDto {
         this.nombre = nombre;
         this.apellido = apellido;
     }
-
+    public OdontologoSalidaDto() {
+    }
     public Long getId() {
         return id;
     }
