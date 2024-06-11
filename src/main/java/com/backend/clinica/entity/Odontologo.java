@@ -1,6 +1,10 @@
 package com.backend.clinica.entity;
-
+import javax.persistence.*;
+@Entity
+//@Table(name = "ODONTOLOGOS")
 public class Odontologo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int matricula;
     private String nombre;

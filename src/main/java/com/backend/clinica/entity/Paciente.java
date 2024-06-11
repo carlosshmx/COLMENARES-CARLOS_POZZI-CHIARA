@@ -1,6 +1,11 @@
 package com.backend.clinica.entity;
+import javax.persistence.*;
 import java.time.LocalDate;
+@Entity
+@Table(name = "PACIENTES")
 public class Paciente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public Paciente() {
@@ -10,7 +15,8 @@ public class Paciente {
     private String apellido;
     private int dni;
     private LocalDate fechaIngreso;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
     public Paciente(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {

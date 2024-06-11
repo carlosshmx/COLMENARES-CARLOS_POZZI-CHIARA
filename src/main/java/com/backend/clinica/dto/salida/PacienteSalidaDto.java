@@ -1,5 +1,7 @@
 package com.backend.clinica.dto.salida;
 
+import jdk.jfr.DataAmount;
+
 import java.time.LocalDate;
 
 public class PacienteSalidaDto {
@@ -11,18 +13,18 @@ public class PacienteSalidaDto {
 
     private int dni;
     private LocalDate fechaIngreso;
-    private DomicilioSalidaDto domicilioSalidaDto;
+    private DomicilioSalidaDto domicilio;
 
     public PacienteSalidaDto() {
     }
 
-    public PacienteSalidaDto(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioSalidaDto domicilioSalidaDto) {
+    public PacienteSalidaDto(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioSalidaDto domicilio) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.fechaIngreso = fechaIngreso;
-        this.domicilioSalidaDto = domicilioSalidaDto;
+        this.domicilio = domicilio;
     }
 
     public Long getId() {
@@ -65,12 +67,12 @@ public class PacienteSalidaDto {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public DomicilioSalidaDto getDomicilioSalidaDto() {
-        return domicilioSalidaDto;
+    public DomicilioSalidaDto getDomicilio() {
+        return domicilio;
     }
 
-    public void setDomicilioSalidaDto(DomicilioSalidaDto domicilioSalidaDto) {
-        this.domicilioSalidaDto = domicilioSalidaDto;
+    public void setDomicilio(DomicilioSalidaDto domicilio) {
+        this.domicilio = domicilio;
     }
 
     @Override
@@ -81,7 +83,9 @@ public class PacienteSalidaDto {
                 ", apellido='" + apellido + '\'' +
                 ", dni=" + dni +
                 ", fechaIngreso=" + fechaIngreso +
-                ", domicilioSalidaDto=" + domicilioSalidaDto +
+                ", domicilioSalidaDto=" + domicilio +
                 '}';
     }
+
+
 }

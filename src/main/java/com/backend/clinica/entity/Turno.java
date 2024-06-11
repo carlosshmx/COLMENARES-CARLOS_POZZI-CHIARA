@@ -3,10 +3,19 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import javax.persistence.*;
+@Entity
 @Component
+@Table(name = "TURNOS")
 public class Turno {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "odontologo_id")
     private Odontologo odontologo;
     private LocalDateTime fechaYHora;
 

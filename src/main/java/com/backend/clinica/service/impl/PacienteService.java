@@ -1,9 +1,9 @@
 package com.backend.clinica.service.impl;
 
 import com.backend.clinica.dto.entrada.PacienteEntradaDto;
+import com.backend.clinica.dto.salida.DomicilioSalidaDto;
 import com.backend.clinica.dto.salida.PacienteSalidaDto;
 import com.backend.clinica.entity.Paciente;
-import com.backend.clinica.repository.IDao;
 import com.backend.clinica.repository.PacienteRepository;
 import com.backend.clinica.service.IPacienteService;
 import com.backend.clinica.utils.JsonPrinter;
@@ -28,14 +28,14 @@ public class PacienteService implements IPacienteService {
 
     @Override
     public PacienteSalidaDto registrarPaciente(PacienteEntradaDto pacienteEntradaDto) {
-        //logica de negocio
-        //mapeo de dto a entidad
+        //logica de negocio?
         LOGGER.info("PacienteEntradaDto: " + pacienteEntradaDto);
         Paciente paciente = modelMapper.map(pacienteEntradaDto, Paciente.class);
         LOGGER.info("PacienteEntidad: " + paciente);
         //Paciente pacienteRegistrado = pacienteIDao.registrar(paciente);
         //mapeo de entidad a dto
         PacienteSalidaDto pacienteSalidaDto = modelMapper.map(pacienteRepository.save(paciente), PacienteSalidaDto.class);
+       // DomicilioSalidaDto domicilioSalidaDto = modelMapper.map(paciente.getDomicilio(), DomicilioSalidaDto.class);
         LOGGER.info("PacienteSalidaDto: " + pacienteSalidaDto);
         return pacienteSalidaDto;
     }
@@ -70,10 +70,10 @@ public class PacienteService implements IPacienteService {
         if(buscarPorId(id) != null){
             pacienteRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado el paciente con id {}", id);
-        } // else {
-        //lanzar excepcion
+        }  else {
 
-        //}
+            LOGGER.error("No se encontro el paciente con id {}", id);
+        }
 
 
     }
@@ -91,12 +91,6 @@ public class PacienteService implements IPacienteService {
             pacienteRecibido.getDomicilio().setId(pacienteAActualizar.getDomicilio().getId());
             pacienteAActualizar = pacienteRecibido;
 
-            //pacienteAActualizar.setNombre(pacienteRecibido.getNombre());
-            //pacienteAActualizar.setApellido(pacienteRecibido.getApellido());
-            //pacienteAActualizar.setDni(pacienteRecibido.getDni());
-            //pacienteAActualizar.setFechaIngreso(pacienteRecibido.getFechaIngreso());
-            //pacienteAActualizar.getDomicilio().setNumero(pacienteRecibido.getDomicilio().getNumero());
-            //pacienteAActualizar.getDomicilio().setLocalidad(pacienteRecibido.getDomicilio().getLocalidad());
             //pacienteAActualizar.getDomicilio().setProvincia(pacienteRecibido.getDomicilio().getProvincia());
 
             pacienteRepository.save(pacienteAActualizar);
@@ -105,7 +99,6 @@ public class PacienteService implements IPacienteService {
 
         } else {
             LOGGER.error("No fue posible actualizar el paciente porque no se encuentra en nuestra base de datos");
-            //lanzar excepcion
         }
 
         return pacienteSalidaDto;
@@ -115,8 +108,8 @@ public class PacienteService implements IPacienteService {
 
     private void configureMapping(){
         modelMapper.typeMap(PacienteEntradaDto.class, Paciente.class)
-                .addMappings(mapper -> mapper.map(PacienteEntradaDto::getDomicilioEntradaDto, Paciente::setDomicilio));
+                .addMappings(mapper -> mapper.map(PacienteEntradaDto::getDomicilio, Paciente::setDomicilio));
         modelMapper.typeMap(Paciente.class, PacienteSalidaDto.class)
-                .addMappings(mapper -> mapper.map(Paciente::getDomicilio, PacienteSalidaDto::setDomicilioSalidaDto));
+                .addMappings(mapper -> mapper.map(Paciente::getDomicilio, PacienteSalidaDto::setDomicilio));
     }
 }

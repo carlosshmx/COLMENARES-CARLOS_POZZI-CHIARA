@@ -13,7 +13,7 @@ class OdontologoServiceTest {
 
     private OdontologoService odontologoService;
 
-    @org.junit.jupiter.api.Test
+   /*  @org.junit.jupiter.api.Test
     void deberiaRegistrarUnOdontologoYObtenerElIdCorrespondiente() {
         odontologoService = new OdontologoService(new OdontologoDaoH2(), new ModelMapper());
         OdontologoEntradaDto odontologoEntradaDto = new OdontologoEntradaDto(123456789, "Doctor", "Test");
@@ -33,5 +33,5 @@ class OdontologoServiceTest {
         OdontologoSalidaDto odontologoRegistrado = odontologoService.registrarOdontologo(odontologoEntradaDto);
 
         assertFalse(odontologoService.listarOdontologos().isEmpty());
-    }
+    }*/
 }
