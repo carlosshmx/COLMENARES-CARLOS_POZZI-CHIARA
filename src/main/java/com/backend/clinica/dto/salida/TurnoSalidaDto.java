@@ -1,8 +1,4 @@
 package com.backend.clinica.dto.salida;
-
-import com.backend.clinica.entity.Odontologo;
-import com.backend.clinica.entity.Paciente;
-
 import java.time.LocalDateTime;
 
 public class TurnoSalidaDto {
@@ -16,6 +12,9 @@ public class TurnoSalidaDto {
         this.paciente = paciente;
         this.odontologo = odontologo;
         this.fechaYHora = fechaYHora;
+    }
+
+    public TurnoSalidaDto() {
     }
 
     public Long getId() {

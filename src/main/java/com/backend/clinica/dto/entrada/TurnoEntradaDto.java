@@ -14,42 +14,40 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class TurnoEntradaDto {
-    @NotBlank(message = "Debe especificarse un paciente")
-    private Paciente paciente;
-    @NotBlank(message = "Debe especificarse un odontologo")
-    private Odontologo odontologo;
     @NotNull(message = "Debe especificarse la fecha Y hora de turno")
     private LocalDateTime fechaYHora;
     @Valid
-    private OdontologoSalidaDto odontologoSalidaDto;
-    private PacienteSalidaDto pacienteSalidaDto;
+    @NotNull(message = "Debe especificarse el Id del odontologo")
+    private Long odontologoId;
+    @NotNull(message = "Debe especificarse el Id del paciente")
+    private Long pacienteId;
     public TurnoEntradaDto() {
     }
 
-    public TurnoEntradaDto(PacienteSalidaDto pacienteSalidaDto, OdontologoSalidaDto odontologoSalidaDto, LocalDateTime fechaYHora) {
-        this.pacienteSalidaDto = pacienteSalidaDto;
-        this.odontologoSalidaDto = odontologoSalidaDto;
+    public TurnoEntradaDto(Long pacienteId, Long odontologoId, LocalDateTime fechaYHora) {
+        this.pacienteId = pacienteId;
+        this.odontologoId = odontologoId;
         this.fechaYHora = fechaYHora;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public Long getPacienteId() {
+        return pacienteId;
     }
 
-    public Odontologo getOdontologo() {
-        return odontologo;
+    public Long getOdontologoId() {
+        return odontologoId;
     }
 
     public LocalDateTime getFechaYHora() {
         return fechaYHora;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setPaciente(Long paciente) {
+        this.pacienteId = paciente;
     }
 
-    public void setOdontologo(Odontologo odontologo) {
-        this.odontologo = odontologo;
+    public void setOdontologo(Long odontologo) {
+        this.odontologoId = odontologo;
     }
 
     public void setFechaYHora(LocalDateTime fechaYHora) {
@@ -59,8 +57,8 @@ public class TurnoEntradaDto {
     @Override
     public String toString() {
         return "TurnoEntradaDto{" +
-                "paciente=" + paciente +
-                ", odontologo=" + odontologo +
+                "paciente=" + pacienteId +
+                ", odontologo=" + odontologoId +
                 ", fechaYHora=" + fechaYHora +
                 '}';
     }

@@ -1,7 +1,6 @@
 package com.backend.clinica.service.impl;
 
 import com.backend.clinica.dto.entrada.PacienteEntradaDto;
-import com.backend.clinica.dto.salida.DomicilioSalidaDto;
 import com.backend.clinica.dto.salida.PacienteSalidaDto;
 import com.backend.clinica.entity.Paciente;
 import com.backend.clinica.repository.PacienteRepository;
