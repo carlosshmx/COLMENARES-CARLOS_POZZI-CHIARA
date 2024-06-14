@@ -3,7 +3,6 @@ package com.backend;
 import com.backend.clinica.dto.entrada.OdontologoEntradaDto;
 import com.backend.clinica.dto.salida.OdontologoSalidaDto;
 import com.backend.clinica.entity.Odontologo;
-import com.backend.clinica.repository.impl.OdontologoDaoH2;
 import com.backend.clinica.service.impl.OdontologoService;
 import org.modelmapper.ModelMapper;
 

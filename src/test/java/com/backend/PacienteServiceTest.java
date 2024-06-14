@@ -5,8 +5,6 @@ import com.backend.clinica.dto.entrada.PacienteEntradaDto;
 import com.backend.clinica.dto.salida.PacienteSalidaDto;
 import com.backend.clinica.entity.Domicilio;
 import com.backend.clinica.entity.Paciente;
-import com.backend.clinica.repository.impl.DomicilioDaoH2;
-import com.backend.clinica.repository.impl.PacienteDaoH2;
 import com.backend.clinica.service.impl.DomicilioService;
 import com.backend.clinica.service.impl.PacienteService;
 import org.junit.jupiter.api.Test;
