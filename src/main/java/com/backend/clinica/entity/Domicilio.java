@@ -1,7 +1,8 @@
 package com.backend.clinica.entity;
 import javax.persistence.*;
 @Entity
-//@Table(name = "DOMICILIOS")
+@Table(name = "DOMICILIOS")
+
 public class Domicilio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,11 +1,11 @@
 package com.backend.clinica.entity;
-import org.springframework.stereotype.Component;
+import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.*;
+
+@Data
 @Entity
-@Component
 @Table(name = "TURNOS")
 public class Turno {
     @Id
@@ -17,6 +17,7 @@ public class Turno {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "odontologo_id")
     private Odontologo odontologo;
+    @Column (length = 20)
     private LocalDateTime fechaYHora;
 
     public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDateTime fechaYHora) {

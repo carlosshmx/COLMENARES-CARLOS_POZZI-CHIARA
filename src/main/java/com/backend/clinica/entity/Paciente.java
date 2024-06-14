@@ -1,6 +1,7 @@
 package com.backend.clinica.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
+
 @Entity
 @Table(name = "PACIENTES")
 public class Paciente {
@@ -85,6 +86,7 @@ public class Paciente {
     public void setDomicilio(Domicilio domicilio) {
         this.domicilio = domicilio;
     }
+
     @Override
     public String toString() {
         return "Id: " + id + " - Nombre: " + nombre + " - Apellido: " + apellido + " - DNI: " + dni + " - Fechas de ingreso: " + fechaIngreso + " - Domicilio: " + domicilio ;
