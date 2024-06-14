@@ -1,7 +1,5 @@
 package com.backend.clinica.dto.salida;
 
-import jdk.jfr.DataAmount;
-
 import java.time.LocalDate;
 
 public class PacienteSalidaDto {
