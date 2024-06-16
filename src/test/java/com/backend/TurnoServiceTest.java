@@ -1,35 +1,16 @@
 package com.backend;
 
-import com.backend.clinica.dto.entrada.DomicilioEntradaDto;
-import com.backend.clinica.dto.entrada.OdontologoEntradaDto;
-import com.backend.clinica.dto.entrada.PacienteEntradaDto;
-import com.backend.clinica.dto.entrada.TurnoEntradaDto;
-import com.backend.clinica.dto.salida.OdontologoSalidaDto;
-import com.backend.clinica.dto.salida.PacienteSalidaDto;
-import com.backend.clinica.dto.salida.TurnoSalidaDto;
-import com.backend.clinica.entity.Domicilio;
-import com.backend.clinica.entity.Odontologo;
-import com.backend.clinica.entity.Paciente;
-import com.backend.clinica.service.impl.DomicilioService;
 import com.backend.clinica.service.impl.OdontologoService;
 import com.backend.clinica.service.impl.PacienteService;
 import com.backend.clinica.service.impl.TurnoService;
-import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TurnoServiceTest {
     private final Logger LOGGER = LoggerFactory.getLogger(PacienteService.class);
 
     private TurnoService turnoService;
-    private DomicilioService domicilioService;
+  //  private DomicilioService domicilioService;
     private PacienteService pacienteService;
     private OdontologoService odontologoService;
     /*
