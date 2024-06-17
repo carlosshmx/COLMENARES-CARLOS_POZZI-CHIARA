@@ -3,6 +3,7 @@ package com.backend.clinica.service.impl;
 import com.backend.clinica.dto.entrada.OdontologoEntradaDto;
 import com.backend.clinica.dto.salida.OdontologoSalidaDto;
 import com.backend.clinica.entity.Odontologo;
+import com.backend.clinica.exceptions.ResourceNotFoundException;
 import com.backend.clinica.repository.IDao;
 import com.backend.clinica.repository.OdontologoRepository;
 import com.backend.clinica.service.IOdontologoService;
@@ -58,7 +59,7 @@ public class OdontologoService implements IOdontologoService {
         return odontologos;
     }
 
-    public OdontologoSalidaDto actualizarOdontologo(OdontologoEntradaDto odontologoEntradaDto, Long id) {
+    public OdontologoSalidaDto actualizarOdontologo(OdontologoEntradaDto odontologoEntradaDto, Long id) throws ResourceNotFoundException {
 
         Odontologo odontologoRecibido = modelMapper.map(odontologoEntradaDto, Odontologo.class);
         Odontologo odontologoToUpdate = odontologoRepository.findById(id).orElse(null);
@@ -75,20 +76,21 @@ public class OdontologoService implements IOdontologoService {
             LOGGER.warn("Odontologo actualizado: {}", JsonPrinter.toString(odontologoSalidaDto));
 
         } else {
-            LOGGER.error("No fue posible actualizar el odontologo porque no se encuentra en nuestra base de datos");
-            //lanzar excepcion
+
+                throw new ResourceNotFoundException("No se encontro el odontologo");
+
         }
 
         return odontologoSalidaDto;
     }
 
     @Override
-    public void eliminarOdontologo(Long id) {
+    public void eliminarOdontologo(Long id) throws ResourceNotFoundException {
         if(buscarPorId(id) != null){
             odontologoRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado el odontologo con id {}", id);
         }  else {
-        LOGGER.error("No se pudo eliminar el odontologo. No se ha encontrado el odontologo con id {}", id);
+            throw new ResourceNotFoundException("No se encontro el Odontologo");
 
         }
 

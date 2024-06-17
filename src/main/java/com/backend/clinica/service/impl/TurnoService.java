@@ -1,16 +1,17 @@
 package com.backend.clinica.service.impl;
 
-import com.backend.clinica.dto.entrada.PacienteEntradaDto;
 import com.backend.clinica.dto.entrada.TurnoEntradaDto;
+import com.backend.clinica.dto.salida.OdontologoSalidaDto;
 import com.backend.clinica.dto.salida.PacienteSalidaDto;
 import com.backend.clinica.dto.salida.TurnoSalidaDto;
 import com.backend.clinica.entity.Odontologo;
 import com.backend.clinica.entity.Paciente;
 import com.backend.clinica.entity.Turno;
+import com.backend.clinica.exceptions.BadRequestException;
+import com.backend.clinica.exceptions.ResourceNotFoundException;
 import com.backend.clinica.repository.TurnoRepository;
 import com.backend.clinica.service.ITurnoService;
 import com.backend.clinica.utils.JsonPrinter;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,13 +46,21 @@ this.entityManager=entityManager;
 
     @Override
     @Transactional
-    public TurnoSalidaDto registrarTurno(TurnoEntradaDto turnoEntradaDto) {
+    public TurnoSalidaDto registrarTurno(TurnoEntradaDto turnoEntradaDto) throws BadRequestException {
 
         Turno turnoRegistrado = new Turno();
         turnoRegistrado.setFechaYHora(turnoEntradaDto.getFechaYHora());
-        Paciente paciente = modelMapper.map(pacienteService.buscarPorId(turnoEntradaDto.getOdontologoId()), Paciente.class);
-        Odontologo odontologo = modelMapper.map(odontologoService.buscarPorId(turnoEntradaDto.getOdontologoId()), Odontologo.class);
+        PacienteSalidaDto pacienteEntidad = pacienteService.buscarPorId(turnoEntradaDto.getPacienteId());
+        if (pacienteEntidad == null) {
+            throw new BadRequestException("No se encontro el paciente");
+        }
+        Paciente paciente = modelMapper.map(pacienteEntidad, Paciente.class);
 
+        OdontologoSalidaDto odontologoEntidad = odontologoService.buscarPorId(turnoEntradaDto.getOdontologoId());
+        if (odontologoEntidad == null) {
+            throw new BadRequestException("No se encontro el odontologo");
+        }
+        Odontologo odontologo = modelMapper.map(odontologoEntidad, Odontologo.class);
         odontologo = entityManager.merge(odontologo);
         paciente = entityManager.merge(paciente);
 
@@ -86,35 +95,38 @@ this.entityManager=entityManager;
     }
 
     @Override
-    public void eliminarTurno(Long id) {
+    public void eliminarTurno(Long id) throws ResourceNotFoundException{
         if(buscarPorId(id) != null){
             turnoRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado el turno con id {}", id);
         }  else {
 
-            LOGGER.error("No se encontro el turno con id {}", id);
+            throw new ResourceNotFoundException("No se encontro el turno");
         }
 
 
     }
 
     @Override
-    public TurnoSalidaDto actualizarTurno(TurnoEntradaDto turnoEntradaDto, Long id) {
+    public TurnoSalidaDto actualizarTurno(TurnoEntradaDto turnoEntradaDto, Long id) throws BadRequestException, ResourceNotFoundException {
         Turno turnoRegistrado = turnoRepository.findById(id).orElse(null);
         if (turnoRegistrado == null) {
-            return null;
+            throw new ResourceNotFoundException("No se encontro el turno");
         }
 
         turnoRegistrado.setFechaYHora(turnoEntradaDto.getFechaYHora());
-        Odontologo odontologo = modelMapper.map(odontologoService.buscarPorId(turnoEntradaDto.getOdontologoId()), Odontologo.class);
-        if (odontologo == null) {
-            LOGGER.warn("Odontólogo no encontrado");
+        PacienteSalidaDto pacienteEntidad = pacienteService.buscarPorId(turnoEntradaDto.getPacienteId());
+        if (pacienteEntidad == null) {
+            throw new BadRequestException("No se encontro el paciente");
         }
+        Paciente paciente = modelMapper.map(pacienteEntidad, Paciente.class);
 
-        Paciente paciente = modelMapper.map(pacienteService.buscarPorId(turnoEntradaDto.getPacienteId()), Paciente.class);
-        if (paciente == null) {
-            LOGGER.warn("Paciente no encontrado");
+        OdontologoSalidaDto odontologoEntidad = odontologoService.buscarPorId(turnoEntradaDto.getOdontologoId());
+        if (odontologoEntidad == null) {
+            throw new BadRequestException("No se encontro el odontologo");
         }
+        Odontologo odontologo = modelMapper.map(odontologoEntidad, Odontologo.class);
+
         turnoRegistrado.setOdontologo(odontologo);
         turnoRegistrado.setPaciente(paciente);
         turnoRegistrado = turnoRepository.save(turnoRegistrado);

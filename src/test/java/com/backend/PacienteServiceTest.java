@@ -1,23 +1,11 @@
 package com.backend;
 
-import com.backend.clinica.dto.entrada.DomicilioEntradaDto;
-import com.backend.clinica.dto.entrada.PacienteEntradaDto;
-import com.backend.clinica.dto.salida.PacienteSalidaDto;
-import com.backend.clinica.entity.Domicilio;
-import com.backend.clinica.entity.Paciente;
-import com.backend.clinica.service.impl.DomicilioService;
 import com.backend.clinica.service.impl.PacienteService;
-import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
-
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PacienteServiceTest {
 
     private PacienteService pacienteService;
-    private DomicilioService domicilioService;
+  //  private DomicilioService domicilioService;
 /*
     @Test
     void deberiaRegistrarseUnPacienteYObtenerElIdCorrespondiente(){
