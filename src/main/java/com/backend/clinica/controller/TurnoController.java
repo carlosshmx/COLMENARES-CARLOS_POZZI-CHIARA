@@ -44,7 +44,7 @@ public class TurnoController {
 
     //DELETE
     @DeleteMapping("/eliminar")//turnos/eliminar?id=x
-    public ResponseEntity<?> eliminarPaciente(@RequestParam Long id){
+    public ResponseEntity<?> eliminarTurno(@RequestParam Long id){
         turnoService.eliminarTurno(id);
         return new ResponseEntity<>("Turno eliminado correctamente", HttpStatus.NO_CONTENT);
     }

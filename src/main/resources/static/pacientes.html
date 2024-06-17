@@ -20,6 +20,10 @@
   
       <!-- Customized Bootstrap Stylesheet -->
       <link href="css/style.css" rel="stylesheet">
+
+      <!-- sweetalert2 -->
+      <link href="/lib/sweetalert2/css/sweetalert2.css
+" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -49,7 +53,13 @@
     </header>
     <main>
         <div class="container mt-4 px-5 row mx-auto">
-          <div class="col-6 mx-auto">
+          <form class="col-6 mx-auto" id="pacienteForm">
+              <div class="mb-3 row">
+                <label for="id_paciente" class="col-sm-3 col-form-label">ID</label>
+                <div class="col-sm-9">
+                  <p id="id_paciente"></p>
+                </div>
+              </div>
               <div class="mb-3 row">
                 <label for="dni_paciente" class="col-sm-3 col-form-label">DNI</label>
                 <div class="col-sm-9">
@@ -97,10 +107,10 @@
                 </div>
               </div>
               <div class="d-flex justify-content-center mt-3">
-                <button type="button" class="btn btn-primary mb-3 mx-2" id="botonRegistroPaciente">Agregar</button>
-                <button type="button" class="btn btn-primary mb-3 mx-2" disabled>Editar</button>
+                <button type="button" class="btn btn-primary mb-3 mx-2" id="botonGuardarPaciente">Guardar</button>
+                <button type="button" class="btn btn-danger mb-3 mx-2" id="botonCancelar">Cancelar</button>
               </div>
-          </div>
+          </form>
               
 
         </div>
@@ -137,6 +147,8 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="./lib/sweetalert2/js/sweetalert2.min.js
+"></script>
 
     <!-- Template Javascript -->
     <script src="/pacientes.js"></script>
