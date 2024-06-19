@@ -15,8 +15,7 @@ async function obtenerListadoOdontologos() {
       }
 
       const listadoOdontologos = await response.json();
-      console.log(listadoOdontologos); // Mostrar el listado en la consola
-
+      
       let odontologosHtml = "";
       listadoOdontologos.forEach(odontologo => {
       
@@ -49,7 +48,6 @@ obtenerListadoOdontologos();
 
 function validarFormulario() {
     const formulario = document.querySelector('#odontologForm');
-    console.log(formulario)
     const inputs = formulario.querySelectorAll('input, textarea, select');
     let formularioValido = true;
 
@@ -122,6 +120,7 @@ async function registrarOdontologo() {
                         icon: "success"
                       });
                     obtenerListadoOdontologos();
+                    resetearFormulario();
                     return resultado;
                 } catch (error) {
                     Swal.fire({
@@ -180,55 +179,28 @@ async function eliminarOdontologo(id) {
 // Actualizar odontologo
 
 async function cargarInputsOdontologo(id){
-    resetearFormulario();
+    // resetearFormulario();
     try {
-        const response = await fetch('http://localhost:8080/odontologos/listar');
+        const response = await fetch(`http://localhost:8080/odontologos/${id}`);
         
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
   
-        const listadoOdontologos = await response.json();
-        const odontologoAEditar  = listadoOdontologos.find(odontologo => odontologo.id === id); 
+        const odontologoAEditar = await response.json();
 
         document.querySelector("#id_odontologo").innerHTML = odontologoAEditar.id
         document.querySelector("#matricula_odontologo").value = odontologoAEditar.matricula;
         document.querySelector("#nombre_odontologo").value = odontologoAEditar.nombre;
         document.querySelector("#apellido_odontologo").value = odontologoAEditar.apellido;
       
-        return listadoOdontologos;
+        return odontologoAEditar;
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
     }
 }
 
-async function cargarInputsPaciente(id){
-    resetearFormulario();
-    try {
-        const response = await fetch('http://localhost:8080/pacientes/listar');
-        
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-  
-        const listadoPacientes = await response.json();
-        const pacienteAEditar  = listadoPacientes.find(paciente => paciente.id === id); 
 
-        document.querySelector("#id_paciente").innerHTML = pacienteAEditar.id
-        document.querySelector("#dni_paciente").value = pacienteAEditar.dni;
-        document.querySelector("#nombre_paciente").value = pacienteAEditar.nombre;
-        document.querySelector("#apellido_paciente").value = pacienteAEditar.apellido;
-        document.querySelector("#calle_domicilio").value = pacienteAEditar.domicilio.calle;
-        document.querySelector("#numero_domicilio").value = pacienteAEditar.domicilio.numero;
-        document.querySelector("#localidad_domicilio").value = pacienteAEditar.domicilio.localidad;
-        document.querySelector("#provincia_domicilio").value =pacienteAEditar.domicilio.provincia;
-
-      
-        return listadoPacientes;
-    } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-    }
-}
 
 async function actulizarOdontologo(id){
     const datosOdontologo = {
@@ -267,7 +239,7 @@ async function actulizarOdontologo(id){
                 icon: "success"
               });
             obtenerListadoOdontologos();
-            location.reload(true);
+            resetearFormulario();
             return resultado;
             } catch (error) {
                 Swal.fire({

@@ -91,7 +91,7 @@ async function obtenerListadoTurnos(){
                               <td>Dr. ${turno.odontologo.nombre}</td>
                               <td>${readableDate}</td>
                               <td>  
-                                  <a class="text-primary px-3" href="#" >
+                                  <a class="text-primary px-3" href="#" onclick="cargarInputsTurno(${turno.id})" >
                                       <i class="fas fa-edit"></i>
                                   </a>
                                   <a class="text-primary px-3" href="#" onclick="eliminarTurno(${turno.id})">
@@ -118,7 +118,6 @@ obtenerListadoTurnos();
 
   function validarFormulario() {
     const formulario = document.querySelector('#turnoForm');
-    console.log(formulario)
     const inputs = formulario.querySelectorAll('input, textarea, select');
     let formularioValido = true;
 
@@ -157,11 +156,11 @@ function resetearFormulario(){
     }else{
         const fecha = document.querySelector("#fecha").value;
                 const hora = document.querySelector("#hora").value;
-                const fechaYHora = `${fecha}T${hora}:00`
+                const fechaYHoraConcat = `${fecha}T${hora}:00`
                 const datosTurno = {
-                odontologoId : document.querySelector("#pacienteSelect").value,
-                pacienteId : document.querySelector("#odontologoSelect").value,
-                fechaYHora : fechaYHora
+                odontologoId : document.querySelector("#odontologoSelect").value,
+                pacienteId : document.querySelector("#pacienteSelect").value,
+                fechaYHora : fechaYHoraConcat
                 };
         Swal.fire({
             title: "¿Deseas guardar este Turno?",
@@ -196,7 +195,7 @@ function resetearFormulario(){
                 } catch (error) {
                     Swal.fire({
                         title: "Hubo un error, intente mas tarde",
-                        icon: "danger"
+                        icon: "error"
                       });
                     console.error('There was a problem with the fetch operation:', error);
                 } 
@@ -250,9 +249,99 @@ function resetearFormulario(){
   }
 
  // Actualizar Turno
- 
+
+ async function cargarInputsTurno(id){
+    // resetearFormulario();
+    try {
+        const response = await fetch(`http://localhost:8080/turnos/${id}`);
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
   
+        const turnoAEditar = await response.json()
 
-  document.querySelector("#botonRegistrarTurno").addEventListener("click", registrarTurno);
+        document.querySelector("#id_turno").innerHTML = turnoAEditar.id
+        document.querySelector("#pacienteSelect").value = turnoAEditar.paciente.id;
+        document.querySelector("#odontologoSelect").value = turnoAEditar.odontologo.id;
 
-  document.querySelector("#botonCancelar").addEventListener("click", resetearFormulario);
+        const fechaYHora= turnoAEditar.fechaYHora;
+        document.querySelector("#fecha").value = fechaYHora.split("T")[0];
+        document.querySelector("#hora").value = fechaYHora.split("T")[1];
+      
+        return turnoAEditar;
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+
+ }
+
+
+
+ async function actulizarTurno(id){
+    const fecha = document.querySelector("#fecha").value;
+    const hora = document.querySelector("#hora").value;
+    const fechaYHoraConcat = `${fecha}T${hora}`
+    const datosTurno = {
+        odontologoId : document.querySelector("#odontologoSelect").value,
+        pacienteId : document.querySelector("#pacienteSelect").value,
+        fechaYHora: fechaYHoraConcat
+    };  
+
+    console.log(datosTurno);
+
+    Swal.fire({
+        title: `¿Cofirnas la edición de este turno?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirmar",
+        cancelButtonText: "Cancelar"
+      }).then(async(result) => {
+        if ( result.isConfirmed) {
+            try {
+                const response = await fetch(`http://localhost:8080/turnos/actualizar/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(datosTurno)
+                });
+        
+            
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            
+            const resultado = await response.json();
+            Swal.fire({
+                title: `Turno guardado`,
+                icon: "success"
+              });
+            obtenerListadoTurnos();
+            resetearFormulario();
+            return resultado;
+            } catch (error) {
+                Swal.fire({
+                    title: `No se pudo guardar el turno`,
+                    icon: "error"
+                  });
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+    });
+}
+
+
+
+function decisionRegistrarOEditar(){
+    const idRegistro = document.querySelector("#id_turno").innerHTML
+
+    idRegistro.trim() !== '' ? actulizarTurno(parseInt(idRegistro)) : registrarTurno();
+}
+ 
+
+document.querySelector("#botonRegistrarTurno").addEventListener("click", decisionRegistrarOEditar);
+
+document.querySelector("#botonCancelar").addEventListener("click", resetearFormulario);

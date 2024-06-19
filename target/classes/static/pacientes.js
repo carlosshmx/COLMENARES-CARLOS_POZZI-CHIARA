@@ -100,7 +100,7 @@ async function registrarPaciente() {
           });
     }else{
 
-  const datosPaciente = {
+    const datosPaciente = {
       nombre: document.querySelector("#nombre_paciente").value,
       apellido: document.querySelector("#apellido_paciente").value,
       dni: document.querySelector("#dni_paciente").value,
