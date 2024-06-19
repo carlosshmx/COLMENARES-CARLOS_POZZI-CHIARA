@@ -79,15 +79,13 @@ public class PacienteService implements IPacienteService {
 
         Paciente pacienteRecibido = modelMapper.map(pacienteEntradaDto, Paciente.class);
         Paciente pacienteAActualizar = pacienteRepository.findById(id).orElse(null);
-        PacienteSalidaDto pacienteSalidaDto = null;
+        PacienteSalidaDto pacienteSalidaDto;
 
         if(pacienteAActualizar != null){
 
             pacienteRecibido.setId(pacienteAActualizar.getId());
             pacienteRecibido.getDomicilio().setId(pacienteAActualizar.getDomicilio().getId());
             pacienteAActualizar = pacienteRecibido;
-
-            //pacienteAActualizar.getDomicilio().setProvincia(pacienteRecibido.getDomicilio().getProvincia());
 
             pacienteRepository.save(pacienteAActualizar);
             pacienteSalidaDto = modelMapper.map(pacienteAActualizar, PacienteSalidaDto.class);
