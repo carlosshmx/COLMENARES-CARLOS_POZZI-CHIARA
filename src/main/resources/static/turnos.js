@@ -291,7 +291,7 @@ function resetearFormulario(){
     console.log(datosTurno);
 
     Swal.fire({
-        title: `¿Cofirnas la edición de este turno?`,
+        title: `¿Cofirmas la edición de este turno?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
