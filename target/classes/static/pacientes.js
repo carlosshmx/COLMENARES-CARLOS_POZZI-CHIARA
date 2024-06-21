@@ -146,7 +146,7 @@ async function registrarPaciente() {
               });
 
             obtenerListadoPacientes();
-            document.querySelector("#pacienteForm").reset()
+            resetearFormulario();
             return resultado;
         } catch (error) {
             Swal.fire({
@@ -218,16 +218,15 @@ async function eliminarPaciente(id) {
 // Actualizar Paciente 
 
 async function cargarInputsPaciente(id){
-    resetearFormulario();
+    // resetearFormulario();
     try {
-        const response = await fetch('http://localhost:8080/pacientes/listar');
+        const response = await fetch(`http://localhost:8080/pacientes/${id}`);
         
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
   
-        const listadoPacientes = await response.json();
-        const pacienteAEditar  = listadoPacientes.find(paciente => paciente.id === id); 
+        const pacienteAEditar = await response.json();
 
         document.querySelector("#id_paciente").innerHTML = pacienteAEditar.id
         document.querySelector("#dni_paciente").value = pacienteAEditar.dni;
@@ -239,7 +238,7 @@ async function cargarInputsPaciente(id){
         document.querySelector("#provincia_domicilio").value =pacienteAEditar.domicilio.provincia;
 
       
-        return listadoPacientes;
+        return pacienteAEditar;
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
     }
@@ -291,7 +290,7 @@ async function actulizarPaciente(id){
                 icon: "success"
               });
             obtenerListadoPacientes();
-            location.reload(true);
+            resetearFormulario();
             return resultado;
             } catch (error) {
                 Swal.fire({

@@ -91,11 +91,7 @@ async function obtenerListadoTurnos(){
                               <td>Dr. ${turno.odontologo.nombre}</td>
                               <td>${readableDate}</td>
                               <td>  
-<<<<<<< HEAD
                                   <a class="text-primary px-3" href="#" onclick="cargarInputsTurno(${turno.id})" >
-=======
-                                  <a class="text-primary px-3" href="#" >
->>>>>>> edd5b8eef829d4bd8012bdc9dd122f12c6a59220
                                       <i class="fas fa-edit"></i>
                                   </a>
                                   <a class="text-primary px-3" href="#" onclick="eliminarTurno(${turno.id})">
@@ -122,7 +118,6 @@ obtenerListadoTurnos();
 
   function validarFormulario() {
     const formulario = document.querySelector('#turnoForm');
-    console.log(formulario)
     const inputs = formulario.querySelectorAll('input, textarea, select');
     let formularioValido = true;
 
@@ -161,19 +156,11 @@ function resetearFormulario(){
     }else{
         const fecha = document.querySelector("#fecha").value;
                 const hora = document.querySelector("#hora").value;
-<<<<<<< HEAD
                 const fechaYHoraConcat = `${fecha}T${hora}:00`
                 const datosTurno = {
-                odontologoId : document.querySelector("#pacienteSelect").value,
-                pacienteId : document.querySelector("#odontologoSelect").value,
+                odontologoId : document.querySelector("#odontologoSelect").value,
+                pacienteId : document.querySelector("#pacienteSelect").value,
                 fechaYHora : fechaYHoraConcat
-=======
-                const fechaYHora = `${fecha}T${hora}:00`
-                const datosTurno = {
-                odontologoId : document.querySelector("#pacienteSelect").value,
-                pacienteId : document.querySelector("#odontologoSelect").value,
-                fechaYHora : fechaYHora
->>>>>>> edd5b8eef829d4bd8012bdc9dd122f12c6a59220
                 };
         Swal.fire({
             title: "¿Deseas guardar este Turno?",
@@ -208,7 +195,7 @@ function resetearFormulario(){
                 } catch (error) {
                     Swal.fire({
                         title: "Hubo un error, intente mas tarde",
-                        icon: "danger"
+                        icon: "error"
                       });
                     console.error('There was a problem with the fetch operation:', error);
                 } 
@@ -257,7 +244,6 @@ function resetearFormulario(){
                   });
                 console.error('There was a problem with the fetch operation:', error);
             }
-<<<<<<< HEAD
         }
     });
   }
@@ -265,7 +251,7 @@ function resetearFormulario(){
  // Actualizar Turno
 
  async function cargarInputsTurno(id){
-    resetearFormulario();
+    // resetearFormulario();
     try {
         const response = await fetch(`http://localhost:8080/turnos/${id}`);
         
@@ -273,17 +259,17 @@ function resetearFormulario(){
             throw new Error('Network response was not ok ' + response.statusText);
         }
   
-        const turno = await response.json();
+        const turnoAEditar = await response.json()
 
-        document.querySelector("#id_turno").innerHTML = turno.id
-        document.querySelector("#pacienteSelect").value = turno.paciente.id;
-        document.querySelector("#odontologoSelect").value = turno.odontologo.id;
+        document.querySelector("#id_turno").innerHTML = turnoAEditar.id
+        document.querySelector("#pacienteSelect").value = turnoAEditar.paciente.id;
+        document.querySelector("#odontologoSelect").value = turnoAEditar.odontologo.id;
 
-        const fechaYHora= turno.fechaYHora;
+        const fechaYHora= turnoAEditar.fechaYHora;
         document.querySelector("#fecha").value = fechaYHora.split("T")[0];
         document.querySelector("#hora").value = fechaYHora.split("T")[1];
       
-        return turno;
+        return turnoAEditar;
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
     }
@@ -295,10 +281,10 @@ function resetearFormulario(){
  async function actulizarTurno(id){
     const fecha = document.querySelector("#fecha").value;
     const hora = document.querySelector("#hora").value;
-    const fechaYHoraConcat = `${fecha}T${hora}:`
+    const fechaYHoraConcat = `${fecha}T${hora}`
     const datosTurno = {
-        odontologoId : document.querySelector("#pacienteSelect").value,
-        pacienteId : document.querySelector("#odontologoSelect").value,
+        odontologoId : document.querySelector("#odontologoSelect").value,
+        pacienteId : document.querySelector("#pacienteSelect").value,
         fechaYHora: fechaYHoraConcat
     };  
 
@@ -334,7 +320,7 @@ function resetearFormulario(){
                 icon: "success"
               });
             obtenerListadoTurnos();
-            location.reload(true);
+            resetearFormulario();
             return resultado;
             } catch (error) {
                 Swal.fire({
@@ -359,16 +345,3 @@ function decisionRegistrarOEditar(){
 document.querySelector("#botonRegistrarTurno").addEventListener("click", decisionRegistrarOEditar);
 
 document.querySelector("#botonCancelar").addEventListener("click", resetearFormulario);
-=======
-        }
-    });
-  }
-
- // Actualizar Turno
- 
-  
-
-  document.querySelector("#botonRegistrarTurno").addEventListener("click", registrarTurno);
-
-  document.querySelector("#botonCancelar").addEventListener("click", resetearFormulario);
->>>>>>> edd5b8eef829d4bd8012bdc9dd122f12c6a59220

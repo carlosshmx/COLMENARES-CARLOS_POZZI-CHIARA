@@ -261,7 +261,7 @@ async function actulizarPaciente(id){
     };  
 
     Swal.fire({
-        title: `¿Cofirnas la edición de este paciente?`,
+        title: `¿Cofirmas la edición de este paciente?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",

@@ -84,9 +84,17 @@ p {
   margin-bottom: 1rem;
 }
 
+
+
 .homeIcon{
   font-size: 100px;
+  transition: transform 0.3s
 }
+
+.homeIcon:hover{
+  transform: scale(1.2);
+}
+
 
 abbr[title],
 abbr[data-original-title] {
