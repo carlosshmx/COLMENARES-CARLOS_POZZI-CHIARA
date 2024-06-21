@@ -189,6 +189,7 @@ async function cargarInputsOdontologo(id){
   
         const odontologoAEditar = await response.json();
 
+        document.querySelector("#id_label").removeAttribute("hidden");
         document.querySelector("#id_odontologo").innerHTML = odontologoAEditar.id
         document.querySelector("#matricula_odontologo").value = odontologoAEditar.matricula;
         document.querySelector("#nombre_odontologo").value = odontologoAEditar.nombre;
@@ -210,7 +211,7 @@ async function actulizarOdontologo(id){
     };  
 
     Swal.fire({
-        title: `¿Cofirnas la edición de este odontologo?`,
+        title: `¿Confirmas la edición de este odontologo?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -238,6 +239,7 @@ async function actulizarOdontologo(id){
                 title: `Odontologo guardado`,
                 icon: "success"
               });
+            document.querySelector("#id_label").setAttribute("hidden", "");
             obtenerListadoOdontologos();
             resetearFormulario();
             return resultado;

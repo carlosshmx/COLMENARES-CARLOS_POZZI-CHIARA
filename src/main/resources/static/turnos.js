@@ -135,6 +135,7 @@ obtenerListadoTurnos();
 }
 
 function resetearFormulario(){
+    document.querySelector("#id_label").setAttribute("hidden", "");
     document.querySelector("#turnoForm").reset();
     obtenerSelectPacientes();
     obtenerSelectOdontologos();
@@ -251,7 +252,7 @@ function resetearFormulario(){
  // Actualizar Turno
 
  async function cargarInputsTurno(id){
-    // resetearFormulario();
+    resetearFormulario();
     try {
         const response = await fetch(`http://localhost:8080/turnos/${id}`);
         
@@ -261,6 +262,7 @@ function resetearFormulario(){
   
         const turnoAEditar = await response.json()
 
+        document.querySelector("#id_label").removeAttribute("hidden");
         document.querySelector("#id_turno").innerHTML = turnoAEditar.id
         document.querySelector("#pacienteSelect").value = turnoAEditar.paciente.id;
         document.querySelector("#odontologoSelect").value = turnoAEditar.odontologo.id;
@@ -291,7 +293,7 @@ function resetearFormulario(){
     console.log(datosTurno);
 
     Swal.fire({
-        title: `¿Cofirmas la edición de este turno?`,
+        title: `¿Confirmas la edición de este turno?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -319,6 +321,7 @@ function resetearFormulario(){
                 title: `Turno guardado`,
                 icon: "success"
               });
+            document.querySelector("#id_label").setAttribute("hidden", "");
             obtenerListadoTurnos();
             resetearFormulario();
             return resultado;

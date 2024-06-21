@@ -73,6 +73,7 @@ function validarFormulario() {
 }
 
 function resetearFormulario(){
+    document.querySelector("#id_label").setAttribute("hidden", "");
     document.querySelector("#pacienteForm").reset();
     document.querySelector("#id_paciente").innerHTML = "";
     const formulario = document.querySelector('#pacienteForm');
@@ -218,7 +219,7 @@ async function eliminarPaciente(id) {
 // Actualizar Paciente 
 
 async function cargarInputsPaciente(id){
-    // resetearFormulario();
+    resetearFormulario();
     try {
         const response = await fetch(`http://localhost:8080/pacientes/${id}`);
         
@@ -228,6 +229,7 @@ async function cargarInputsPaciente(id){
   
         const pacienteAEditar = await response.json();
 
+        document.querySelector("#id_label").removeAttribute("hidden");
         document.querySelector("#id_paciente").innerHTML = pacienteAEditar.id
         document.querySelector("#dni_paciente").value = pacienteAEditar.dni;
         document.querySelector("#nombre_paciente").value = pacienteAEditar.nombre;
@@ -261,7 +263,7 @@ async function actulizarPaciente(id){
     };  
 
     Swal.fire({
-        title: `¿Cofirmas la edición de este paciente?`,
+        title: `¿Confirmas la edición de este paciente?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -289,6 +291,7 @@ async function actulizarPaciente(id){
                 title: `Paciente guardado`,
                 icon: "success"
               });
+            
             obtenerListadoPacientes();
             resetearFormulario();
             return resultado;

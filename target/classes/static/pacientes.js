@@ -228,6 +228,7 @@ async function cargarInputsPaciente(id){
   
         const pacienteAEditar = await response.json();
 
+        document.querySelector("#id_label").removeAttribute("hidden");
         document.querySelector("#id_paciente").innerHTML = pacienteAEditar.id
         document.querySelector("#dni_paciente").value = pacienteAEditar.dni;
         document.querySelector("#nombre_paciente").value = pacienteAEditar.nombre;
@@ -261,7 +262,7 @@ async function actulizarPaciente(id){
     };  
 
     Swal.fire({
-        title: `¿Cofirnas la edición de este paciente?`,
+        title: `¿Confirmas la edición de este paciente?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -289,6 +290,7 @@ async function actulizarPaciente(id){
                 title: `Paciente guardado`,
                 icon: "success"
               });
+            document.querySelector("#id_label").setAttribute("hidden", "");
             obtenerListadoPacientes();
             resetearFormulario();
             return resultado;
